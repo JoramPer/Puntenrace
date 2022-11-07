@@ -1,0 +1,42 @@
+import turtle
+
+
+t = turtle.Turtle()
+t.speed(0)
+screen=turtle.Screen()
+screen.setup(800, 800,400,400)
+t.penup()
+t.write("  Startpositie 0, 0" , True)
+t.home()
+t.pendown()
+
+print("Voer een tekenreeks in met de letters NOZWP")    
+reeks = input("")  
+reeks = reeks.upper()
+snelheidNZ=0
+snelheidOW=0
+tX=0
+tY=0
+raster=10
+
+t.speed(1)
+t.dot(50/raster)
+
+for x in reeks:
+    if x == "N":
+      snelheidNZ+=1
+    if x == "Z":
+      snelheidNZ-=1
+    if x == "W":
+      snelheidOW-=1     
+    if x == "O":
+      snelheidOW+=1
+    tX+=snelheidOW
+    tY+=snelheidNZ
+    t.goto(tX*raster,tY*raster)
+    t.dot(50/raster)
+
+t.speed(0)
+t.penup()
+t.write("  Eindpositie " + str(t.xcor()/raster) + ", "+ str(t.ycor()/raster), True)     
+t.goto(tX*raster,tY*raster)
